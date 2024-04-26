@@ -4,12 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN go mod download
+RUN go mod tidy
 
-ENV CGO_ENABLED 0
-ENV GOOS linux
-ENV GOARCH amd64
-
-RUN go build -o /sprint_12
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /sprint_12
 
 CMD ["/sprint_12"]
